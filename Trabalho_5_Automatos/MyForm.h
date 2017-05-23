@@ -236,6 +236,7 @@ private: System::Void criarAutomatoButton_Click(System::Object^  sender, System:
 	dataGridView1->Rows->Clear(); 
 	dataGridView1->Columns->Clear();
 	
+	
 	String ^ alfabeto = alfabetoTextBox->Text;
 	String ^ alfabeto_aux = "";
 	//Convertendo string da textbox e removendo repetidas
@@ -287,10 +288,17 @@ private: System::Void criarAutomatoButton_Click(System::Object^  sender, System:
 		Marshal::FreeHGlobal(IntPtr((void*)chars));
 	}
 private: System::Void qtdEstadosTextBox_Leave(System::Object^  sender, System::EventArgs^  e) {
-	int numero_estados = System::Convert::ToInt32(qtdEstadosTextBox->Text);
-	
-	for(int i = 0; i < numero_estados; i++)
-	estadoInicialComboBox->Items->Add("q" + i);
+	estadoInicialComboBox->Items->Clear();
+	try {
+		int numero_estados = System::Convert::ToInt32(qtdEstadosTextBox->Text);
+
+		for (int i = 0; i < numero_estados; i++)
+			estadoInicialComboBox->Items->Add("q" + i);
+	}
+	catch(Exception^  e)
+	{
+		
+	}
 
 }
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
